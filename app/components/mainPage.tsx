@@ -1,5 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
+import { Suspense } from "react";
 
 export default function MainPage(){
       const router = useRouter();
@@ -15,6 +16,8 @@ export default function MainPage(){
   <h1 className="text-4xl text-center mx-2">Social Media with Ease</h1>
   <h4 className="text-center mt-4">Get real-time insight on audience growth, follower</h4>
   <h4 className="text-center mx-2"> trends, and potential clients, all in one place</h4>
+
+  <Suspense fallback={<p>Loading product list...</p>}>
   <span className="flex items-center justify-center mt-6">
      <button 
      onClick={() => router.push("/product")}
@@ -22,7 +25,7 @@ export default function MainPage(){
         <h1 className="text-center text-white mx-4">Show your Products</h1>
       </button>
     </span>
-
+ </Suspense>
 
  <h1 className=" text-4xl text-black text-center mt-16">Customer testimonials</h1>
  <h4 className="text-center mt-2">Neque porro quisquam est qui dolorem quasar.</h4>

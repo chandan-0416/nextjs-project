@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 
+import { NuqsAdapter } from "nuqs/adapters/next/app";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -29,10 +31,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <NuqsAdapter>
         <Header />
-        {children}
+       {children} 
         <Footer />
-       
+        </NuqsAdapter>
+      
       </body>
     </html>
   );
