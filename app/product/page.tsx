@@ -3,7 +3,7 @@ import FiltertheProduct from "./filterProduct";
 import Image from "next/image";
 import Link from "next/link";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import DetailPage from "../detailPage/page";
+import DetailPage from "../detailPage/[id]/page";
 
 export type Product = {
   id: number;
@@ -22,7 +22,7 @@ export type Product = {
 // 🧠 Server-side data fetch (runs on server)
 async function fetchProducts(): Promise<Product[]> {
   const res = await fetch("https://dummyjson.com/products?limit=100", {
-    //cache: "no-store", // disable caching to always fetch fresh data
+    cache: "no-store", // disable caching to always fetch fresh data
   });
   const data = await res.json();
   return data.products;
@@ -82,7 +82,7 @@ export default async function ProductsPage({
 
       {/* 🛍️ Products Grid */}  
       <main className="flex-1">
-       <Link  href="/detailPage">
+       <Link  href="../detailPage/[id]/page">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (

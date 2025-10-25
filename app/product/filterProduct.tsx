@@ -105,8 +105,6 @@ export default function FiltertheProduct({
     {tag}
   </button>
 ))}
-
-
         </div>
       </div>
 
