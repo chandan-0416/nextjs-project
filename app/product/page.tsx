@@ -2,8 +2,6 @@ import { Suspense } from "react";
 import FiltertheProduct from "./filterProduct";
 import Image from "next/image";
 import Link from "next/link";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import DetailPage from "../detailPage/[id]/page";
 
 export type Product = {
   id: number;
@@ -82,12 +80,11 @@ export default async function ProductsPage({
 
       {/* 🛍️ Products Grid */}  
       <main className="flex-1">
-       <Link  href="../detailPage/[id]/page">
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
-              
-              <div
+              <Link
+              href={`/detailPage/${product.id}`}
                 key={product.id}
                 className="border rounded-lg p-4 shadow hover:shadow-md transition"
               >
@@ -110,7 +107,7 @@ export default async function ProductsPage({
                 </p>
                 <p className="text-yellow-500">⭐ {product.rating}</p>
                 <p className="text-sm text-gray-400">{product.category}</p>
-              </div>
+              </Link>
             ))
           ) : (
             <p className="text-gray-600 text-center mt-10">
@@ -118,7 +115,6 @@ export default async function ProductsPage({
             </p>
           )}
         </div>
-         </Link>
       </main>
     </div>
   );
