@@ -4,9 +4,6 @@ import "./globals.css";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
-
-
-import Link from "next/link";
 import { CartProvider } from "./context/CartContext";
 
 const geistSans = Geist({
@@ -28,6 +25,7 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
+
 }>) {
   return (
     <html lang="en">
@@ -38,8 +36,9 @@ export default function RootLayout({
           <CartProvider>
           <Header />
           {children} 
-          </CartProvider>
+        
         <Footer />
+          </CartProvider>
         </NuqsAdapter>
       
       </body>

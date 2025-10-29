@@ -38,7 +38,7 @@ export default function Header() {
           <Link href="/cart" className="relative">
             <ShoppingCart size={24} />
             {cartItems.length > 0 && (
-              <span className="absolute right-0 top-1.5 ml-1 bg-red-500 text-white text-2xl rounded-full px-2">
+              <span className="absolute right-2 top-2.5 ml-1 bg-red-500 text-white rounded-full px-1 mb-1">
                 {cartItems.length}
               </span>
             )}

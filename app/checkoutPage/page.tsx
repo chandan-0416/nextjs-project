@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function CheckoutPage() {
   const { cartItems, clearCart } = useCart();
   const [orderPlaced, setOrderPlaced] = useState(false);
+   const [paymentMethod, setPaymentMethod] = useState("");
 
   const total = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
@@ -25,7 +26,7 @@ export default function CheckoutPage() {
         </p>
         <a
           href="/product"
-          className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition"
+          className="bg-blue-600 text-white px-6 py-2 rounded-xl hover:bg-blue-700 transition mb-6"
         >
           Continue Shopping
         </a>
@@ -109,16 +110,101 @@ export default function CheckoutPage() {
               />
             </div>
 
+            {/* 💳 Payment Method */}
+        <div>
+          <label className="block text-gray-700 font-medium">
+            Payment Method
+          </label>
+          <select
+            required
+            value={paymentMethod}
+            onChange={(e) => setPaymentMethod(e.target.value)}
+            className="w-full border rounded-lg p-2 mt-1"
+          >
+            <option value="">Select a payment method</option>
+            <option value="credit">Credit / Debit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="cod">Cash on Delivery</option>
+          </select>
+        </div>
+
+        {/* 💳 Credit/Debit Card Details */}
+        {paymentMethod === "credit" && (
+          <div className="space-y-4 mt-4 border-t pt-4">
+            <h2 className="text-lg font-semibold text-gray-800">
+              Card Payment Details
+            </h2>
             <div>
-              <label className="block text-gray-700 font-medium">Payment Method</label>
-              <select required className="w-full border rounded-lg p-2 mt-1">
-                <option value="">Select a payment method</option>
-                <option value="credit">Credit / Debit Card</option>
-                <option value="paypal">PayPal</option>
-                <option value="cod">Cash on Delivery</option>
-              </select>
+              <label className="block text-gray-700 font-medium">
+                Card Number
+              </label>
+              <input
+                required
+                type="text"
+                maxLength={16}
+                placeholder="1234 5678 9012 3456"
+                className="w-full border rounded-lg p-2 mt-1"
+              />
             </div>
 
+            <div className="flex gap-4">
+              <div className="w-1/2">
+                <label className="block text-gray-700 font-medium">Expiry</label>
+                <input
+                  required
+                  type="text"
+                  placeholder="MM/YY"
+                  className="w-full border rounded-lg p-2 mt-1"
+                />
+              </div>
+
+              <div className="w-1/2">
+                <label className="block text-gray-700 font-medium">CVV</label>
+                <input
+                  required
+                  type="password"
+                  maxLength={3}
+                  placeholder="123"
+                  className="w-full border rounded-lg p-2 mt-1"
+                />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* 💲 PayPal Details */}
+        {paymentMethod === "paypal" && (
+          <div className="space-y-4 mt-4 border-t pt-4">
+            <h2 className="text-lg font-semibold text-gray-800">
+              PayPal Account
+            </h2>
+            <div>
+              <label className="block text-gray-700 font-medium">Email</label>
+              <input
+                required
+                type="email"
+                placeholder="you@example.com"
+                className="w-full border rounded-lg p-2 mt-1"
+              />
+            </div>
+            <div>
+              <label className="block text-gray-700 font-medium">Password</label>
+              <input
+                required
+                type="password"
+                placeholder="********"
+                className="w-full border rounded-lg p-2 mt-1"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* ✅ No extra fields for COD */}
+        {paymentMethod === "cod" && (
+          <div className="mt-4 text-green-700 font-medium border-t pt-4">
+            You can pay directly when your order is delivered. 💵
+          </div>
+        )}
             <button
               type="submit"
               className="bg-green-600 text-white w-full py-2 rounded-lg mt-4 hover:bg-green-700 transition"
@@ -131,5 +217,3 @@ export default function CheckoutPage() {
     </div>
   );
 }
-
-

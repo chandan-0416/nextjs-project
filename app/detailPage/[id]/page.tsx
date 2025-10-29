@@ -1,3 +1,20 @@
+import ProductDetail from "./ProductDetail";
+
+async function fetchProductById(id: string) {
+  const res = await fetch(`https://dummyjson.com/products/${id}`);
+  if (!res.ok) throw new Error("Failed to fetch product");
+  return res.json();
+}
+
+export default async function DetailPage({ params }: { params: { id: string } }) {
+  const product = await fetchProductById(params.id);
+
+  // ✅ Pass `product` as a prop
+  return <ProductDetail product={product} />;
+}
+
+
+
 // type Product = {
 //   id: number;
 //   title: string;
@@ -8,14 +25,11 @@
 //   thumbnail: string;
 // };
 
-import ProductDetail from "./ProductDetail";
-
 // type Props = {
 //   params: {
 //     id: string;
 //   };
 // };
-
 // // ✅ Fetch product by ID
 // async function fetchProductById(id: string): Promise<Product> {
 //   const res = await fetch(`https://dummyjson.com/products/${id}`);
@@ -72,16 +86,3 @@ import ProductDetail from "./ProductDetail";
 //   );
 // }
 
-
-async function fetchProductById(id: string) {
-  const res = await fetch(`https://dummyjson.com/products/${id}`);
-  if (!res.ok) throw new Error("Failed to fetch product");
-  return res.json();
-}
-
-export default async function DetailPage({ params }: { params: { id: string } }) {
-  const product = await fetchProductById(params.id);
-
-  // ✅ Pass `product` as a prop
-  return <ProductDetail product={product} />;
-}
