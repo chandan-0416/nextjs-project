@@ -14,11 +14,12 @@ export default function Header() {
     <header className="bg-gradient-to-b from-blue-100 to-blue-200 shadow-md">
       <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
         {/* Logo */}
+         <Link href="/" className="hover:text-blue-600">
         <div className="flex items-center gap-2">
           <Image src="/images/icon1.png" alt="Logo" width={30} height={30} />
           <h1 className="text-xl font-bold">TrendTide</h1>
         </div>
-
+            </Link>
         {/* Nav for desktop */}
         <nav className="hidden md:flex gap-6 items-center">
           <Link href="/product" className="hover:text-blue-600">

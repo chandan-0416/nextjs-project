@@ -2,7 +2,16 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
-import type { Product } from "./page";
+
+type Product = {
+  id: number;
+  title: string;
+  description: string;
+  price: number;
+  brand: string;
+  category: string;
+  thumbnail: string;
+};
 
 type Props = {
   products: Product[];
@@ -52,12 +61,18 @@ export default function FiltertheProduct({
     router.push(`/product?${params.toString()}`);
   };
 
-  const toggleArrayParam = (key: string, current: string[] | number[], value: string | number) => {
-    const updated = current.includes(value)
-      ? current.filter((v) => v !== value)
-      : [...current, value];
-    updateParam(key, updated);
-  };
+const toggleArrayParam = <T extends string | number>(
+  key: string,
+  current: T[],
+  value: T
+) => {
+  const updated = current.includes(value)
+    ? current.filter((v) => v !== value)
+    : [...current, value];
+
+  // ✅ Convert all values to strings for URL compatibility
+  updateParam(key, updated.map(String));
+};
 
   return (
     <div className="border rounded-xl p-4 shadow-md bg-white sticky top-4">
