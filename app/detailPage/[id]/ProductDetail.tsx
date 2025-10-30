@@ -1,8 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useCart } from "@/app/context/CartContext";
-
+import Image from "next/image";
 // 🧾 Define product type
 type Product = {
   id: number;
@@ -42,11 +41,14 @@ export default function ProductDetail({ product }: { product: Product }) {
   return (
     <div className="max-w-5xl mx-auto p-10">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-        <img
-          src={product.thumbnail}
-          alt={product.title}
-          className="w-full h-[400px] object-cover rounded-2xl shadow-lg"
-        />
+        <Image
+            src={product.thumbnail}
+            alt={product.title}
+            width={400}
+            height={300}
+            className="w-full h-[400px] object-cover rounded-2xl shadow-lg"
+              unoptimized
+          />
 
         <div>
           <h1 className="text-3xl font-bold mb-3">{product.title}</h1>

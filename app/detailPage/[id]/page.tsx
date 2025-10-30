@@ -11,7 +11,9 @@ export type Product = {
   thumbnail: string;
 };
 
-async function fetchProductById(id: string): Promise<Product> {
+async function fetchProductById(id: number): Promise<Product> {
+  console.log("Fetching product ID:", id);
+
   const res = await fetch(`https://dummyjson.com/products/${id}`);
   if (!res.ok) throw new Error("Failed to fetch product");
   return res.json();
@@ -19,7 +21,7 @@ async function fetchProductById(id: string): Promise<Product> {
 export default async function DetailPage({
   params,
 }: {
-  params: Promise<{ id: string }>; 
+  params: Promise<{ id: number }>; 
 }) {
   
   const { id } = await params;

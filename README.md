@@ -31,6 +31,7 @@ When more than one lockfile exists, Turbopack gets confused about which package 
      - Show your Product (Button)
      # Navigate to Products Page
         { 
+            
              - scroll on filter side bar and products list
              - Responsive for All devices
              - Background color in Cards
@@ -43,8 +44,11 @@ When more than one lockfile exists, Turbopack gets confused about which package 
              - Pagination* (to the Products list with 9 Carts)
              - sticky footer layout
              - if I click mutiple time it's just store one product in shopping cart and further product add or reduce according to the increment/decrement click.
-             - check box mu
+
+             - check box multi - option with 6 and remain with see more | multi-select checkbox list & “See more / See less” toggle
              - chevron right  " > "
+             - in detail page suggestions of selected products
+
         }
             - Filter Products
                   - Search Title
