@@ -1,17 +1,14 @@
 "use client";
 
-import { useCart } from "../context/CartContext";
-import { ShoppingCart, Menu, X } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
-import Image from "next/image";
+import { useCart } from "../context/CartContext"; // React.context
+import { ShoppingCart} from "lucide-react";  //shopping cart icon
+import Link from "next/link"; // Navigation b/w pages - LINK component
+import Image from "next/image"; // 
 
 export default function Header() {
   const { cartItems } = useCart();
-  const [menuOpen, setMenuOpen] = useState(false);
-
   return (
-    <header className="bg-gradient-to-b from-blue-100 to-blue-200 shadow-md">
+    <header className=" fixed top-0 left-0 w-full z-50 bg-gradient-to-b from-blue-100 to-blue-200 shadow-md ">
       <div className="max-w-6xl mx-auto flex justify-between items-center p-4">
 
         {/* Logo */}
@@ -22,7 +19,7 @@ export default function Header() {
         </div>
         </Link>
 
-        {/* Nav for desktop */}
+        {/* Navbar */}
         <nav className="hidden md:flex gap-6 items-center">
           <Link href="/product" className="hover:text-blue-600">
             Products
@@ -49,14 +46,6 @@ export default function Header() {
             )}
           </Link>
         </nav>
-
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden"
-          onClick={() => setMenuOpen((prev) => !prev)}
-        >
-          {menuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
       </div>
     </header>
   );

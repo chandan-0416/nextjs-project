@@ -64,18 +64,21 @@
 // };
 // console.log(rectangle);
 //Eg.9 : Union Type
-// function printStatusCode(code: string | number) {
-//   console.log(`My status code is ${code}.`)
-// }
-// printStatusCode(404);
-// printStatusCode('404');
-//Eg.10 : TS - Functions - Return Type
-function getTime() {
-    return new Date().getTime();
+function printStatusCode(code) {
+    console.log("My status code is ".concat(code, "."));
 }
-getTime();
+printStatusCode(404);
+printStatusCode('404');
+//Eg.10 : TS - Functions - Return Type
+// function getTime(): number {
+//   return new Date().getTime();
+// }
+// getTime();
 // - Void Return Type
 // function printHello(): void {
 //   console.log('Hello!');
 // }
 // printHello();
+//Eg.11 : TS - Casting
+// let x: unknown = 'hello';
+// console.log((x as string).length);

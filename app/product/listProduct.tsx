@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState, useEffect, useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import FiltertheProduct from "./filterProduct";
 import Image from "next/image";
@@ -31,7 +31,6 @@ export default function ProductsPage() {
   const categoryParam = searchParams.get("category") || "";
   const price = Number(searchParams.get("price") || 2000);
 
-  // ✅ Handle multiple categories and ratings correctly
   const categories = useMemo(
     () =>
       categoryParam
@@ -65,7 +64,7 @@ export default function ProductsPage() {
     const filtered = products.filter((p) => {
       const matchTitle = p.title.toLowerCase().includes(search.toLowerCase());
       const matchCategory =
-        categories.length === 0 || categories.includes(p.category);
+       categories.length === 0 || categories.includes(p.category);
       const matchRating =
         ratings.length === 0 || ratings.includes(Math.round(p.rating));
       const matchPrice = p.price <= price;
@@ -73,7 +72,7 @@ export default function ProductsPage() {
         tags.length === 0 || tags.some((t) => t === p.brand || t === p.category);
 
       return matchTitle && matchCategory && matchRating && matchPrice && matchTags;
-    });
+    });  
 
     setFilteredProducts(filtered);
   }, [products, search, categories, ratings, tags, price]);
@@ -89,13 +88,33 @@ export default function ProductsPage() {
     const params = new URLSearchParams(searchParams.toString());
     params.set("page", page.toString());
     router.push(`?${params.toString()}`);
+    window.scrollTo({ top: 0, behavior: "smooth" }); // Smooth scroll to top
   };
 
+  // Generate visible page numbers dynamically
+  const generatePageNumbers = () => {
+    const pages = [];
+    const maxVisible = 5; // number of visible buttons (before truncating)
+    let start = Math.max(1, currentPage - 2);
+    const end = Math.min(totalPages, start + maxVisible - 1);
+
+    if (end - start < maxVisible - 1) {
+      start = Math.max(1, end - maxVisible + 1);
+    }
+
+    for (let i = start; i <= end; i++) {
+      pages.push(i);
+    }
+
+    return pages;
+  };
+
+  const visiblePages = generatePageNumbers();
+
   return (
-    <div className="flex flex-col md:flex-row mt-10 px-6 gap-6 mb-10">
+    <div className="mt-28 flex flex-col md:flex-row px-6 gap-6 mb-10">
       {/* Sidebar Filters */}
       <aside className="w-full md:w-1/4 lg:w-1/5">
-        <Suspense fallback={<p>Loading Filters...</p>}>
           <FiltertheProduct
             products={products}
             search={search}
@@ -104,7 +123,6 @@ export default function ProductsPage() {
             tags={tags}
             price={price}
           />
-        </Suspense>
       </aside>
 
       {/* Product Grid */}
@@ -147,34 +165,66 @@ export default function ProductsPage() {
 
         {/* Pagination Controls */}
         {totalPages > 1 && (
-          <div className="flex justify-center items-center gap-4 mt-10">
+          <div className="flex justify-center items-center gap-2 mt-10 flex-wrap">
+            {/* First Page Button */}
+            {currentPage > 1 && (
+              <button
+                onClick={() => handlePageChange(1)}
+                className="px-3 py-2 bg-gray-200 rounded hover:bg-gray-300"
+              >
+                First
+              </button>
+            )}
+
+            {/* Previous */}
             <button
               onClick={() => handlePageChange(Math.max(currentPage - 1, 1))}
               disabled={currentPage === 1}
-              className={`px-4 py-2 rounded-lg ${
-                currentPage === 1
-                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                  : "bg-blue-600 text-white hover:bg-blue-700"
-              }`}
+              className={`px-3 py-2 rounded-lg ${currentPage === 1
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700"
+                }`}
             >
-              Previous
+              Prev
             </button>
 
-            <span className="text-lg font-medium">
-              Page {currentPage} of {totalPages}
-            </span>
+            {/* Page Numbers */}
+            {visiblePages.map((page) => (
+              <button
+                key={page}
+                onClick={() => handlePageChange(page)}
+                className={`px-3 py-2 rounded-md ${currentPage === page
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-100 hover:bg-gray-200"
+                  }`}
+              >
+                {page}
+              </button>
+            ))}
 
+            {/* Next */}
             <button
-              onClick={() => handlePageChange(Math.min(currentPage + 1, totalPages))}
+              onClick={() =>
+                handlePageChange(Math.min(currentPage + 1, totalPages))
+              }
               disabled={currentPage === totalPages}
-              className={`px-4 py-2 rounded-lg ${
-                currentPage === totalPages
-                  ? "bg-gray-300 text-gray-600 cursor-not-allowed"
-                  : "bg-blue-600 text-white hover:bg-blue-700"
-              }`}
+              className={`px-3 py-2 rounded-lg ${currentPage === totalPages
+                ? "bg-gray-300 text-gray-600 cursor-not-allowed"
+                : "bg-blue-600 text-white hover:bg-blue-700"
+                }`}
             >
               Next
             </button>
+
+            {/* Last Page Button */}
+            {currentPage < totalPages && (
+              <button
+                onClick={() => handlePageChange(totalPages)}
+                className="px-3 py-2 bg-gray-200 rounded hover:bg-gray-300"
+              >
+                Last
+              </button>
+            )}
           </div>
         )}
       </main>

@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useState, ReactNode } from "react"; //ReactNode represents everything that can be rendered.
 
 type CartItem = {
   id: number;
@@ -23,20 +23,20 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  // 🛒 Add item only once — ignore if already exists
+  // Add item only once — ignore if already exists
   const addToCart = (item: CartItem) => {
     setCartItems((prev) => {
       const exists = prev.some((i) => i.id === item.id);
-      if (exists) return prev; // ❌ prevent duplicates
+      if (exists) return prev; // prevent duplicates
       return [...prev, { ...item, quantity: 1 }];
     });
   };
 
-  // ❌ Remove item completely
+  // Remove item completely
   const removeFromCart = (id: number) =>
     setCartItems((prev) => prev.filter((i) => i.id !== id));
 
-  // ➕ Increment quantity
+  //  Increment quantity
   const incrementQuantity = (id: number) =>
     setCartItems((prev) =>
       prev.map((i) =>
@@ -44,7 +44,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       )
     );
 
-  // ➖ Decrement quantity (min = 1)
+  // Decrement quantity (min = 1)
   const decrementQuantity = (id: number) =>
     setCartItems((prev) =>
       prev.map((i) =>
@@ -52,7 +52,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       )
     );
 
-  // 🧹 Clear entire cart
+  //  Clear entire cart
   const clearCart = () => setCartItems([]);
 
   return (
