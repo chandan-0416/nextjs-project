@@ -111,15 +111,13 @@ e> Sometimes, you want to refresh or re-suspend a component — for example, whe
 a> Routing in Next.js is file-based — the folder and file structure inside your app/ (or older pages/) directory automatically defines your URL routes.No need to manually configure routes like in React Router — it’s automatic.
 b> Each folder with a page.tsx file automatically becomes a route.
 c> Dynamic Routes (param) - To handle URLs with parameters (like /products/5).
-
+d> Next.js uses file-system based routing, meaning you can use folders and files to define routes. This page will guide you through how to create layouts and pages, and link between them.
 8. 
 # Navigation between Pages
 a> Use Next.js’s <LINK> component from next/link for client-side navigation.
 b> Programmatic Navigation (useRouter)
 c> params represents the dynamic segments from the URL path — that is, parts of the route surrounded by square brackets [ ].
 d> searchParams represents the query string in the URL (the part after ?).
-
-
 9. Frontend System Design
 # Low Level Design (LLD)
 - Component Design
@@ -137,10 +135,8 @@ d> searchParams represents the query string in the URL (the part after ?).
 - Youtube Live Stream chat UI
 - Auto complete & Search Box
 
-
-
 10. Folder Structure
-{
+```{
     - 📦Project Name/
 ├── 📁 app/
 │   ├── layout.tsx                 # Root layout (common header/footer/providers)
