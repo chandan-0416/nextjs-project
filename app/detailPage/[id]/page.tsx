@@ -12,7 +12,7 @@ export type Product = {
 };
 
 async function fetchProductById(id: number): Promise<Product> {
-  console.log("Fetching product ID:", id);
+  // console.log("Fetching product ID:", id);
 
   const res = await fetch(`https://dummyjson.com/products/${id}`);
   if (!res.ok) throw new Error("Failed to fetch product");

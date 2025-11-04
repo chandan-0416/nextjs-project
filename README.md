@@ -3,7 +3,7 @@
   - install next.js with Typescript
   - initialize, configure
   - run the App (npm run dev)
-  - C:\Users\chand\OneDrive\Desktop\NextJS-Project\nextjs-project> npm run dev 
+  - C:\Users\chand\OneDrive\Desktop\NextJS-Project\nextjs-project> npm run dev
 
 # Practice : Check this websites for better UI (Travel Related websites)
 1. https://www.booking.com/
@@ -99,7 +99,48 @@ that’s where your next.config.js, package.json, and node_modules are. It found
  - or pnpm-lock.yaml (used by pnpm)
 When more than one lockfile exists, Turbopack gets confused about which package manager / root directory to use.
 5. Make sure - Page.tsx --> No "use client" , bcz we want Page.tsx run on server side.
-6. Folder Structure
+6. Suspense (use at components level, skelton show and aslo show in url) and loading page
+# Suspense
+a> Suspense is a React feature that lets components wait (“suspend”) for asynchronous data before rendering.
+b> It helps manage loading states automatically and improves the user experience when dealing with async operations — such as fetching data, lazy-loading components, or waiting for server-rendered content.
+c> Waiting for server-rendered content => The period when a server component is fetching data before sending its HTML to the browser.
+d> Suspense Attributes/props - fallback, children and key.
+e> Sometimes, you want to refresh or re-suspend a component — for example, when a filter changes or a new ID is selected. You can use the key prop on Suspense to remount the children.
+7. Server Components (async fetch) & Client Components (lazy load)
+# Routing in Next.js
+a> Routing in Next.js is file-based — the folder and file structure inside your app/ (or older pages/) directory automatically defines your URL routes.No need to manually configure routes like in React Router — it’s automatic.
+b> Each folder with a page.tsx file automatically becomes a route.
+c> Dynamic Routes (param) - To handle URLs with parameters (like /products/5).
+
+8. 
+# Navigation between Pages
+a> Use Next.js’s <LINK> component from next/link for client-side navigation.
+b> Programmatic Navigation (useRouter)
+c> params represents the dynamic segments from the URL path — that is, parts of the route surrounded by square brackets [ ].
+d> searchParams represents the query string in the URL (the part after ?).
+
+
+9. Frontend System Design
+# Low Level Design (LLD)
+- Component Design
+- Config Driven UI
+- Shimmer UI
+- Routing & Prouting Routes
+- State Management + Libraries
+- Multi language Support
+- Infinte Scroll
+- Accorion
+- Reddit Nested Comments
+- Image Slider
+- Pagination
+- Real Time Updates
+- Youtube Live Stream chat UI
+- Auto complete & Search Box
+
+
+
+10. Folder Structure
+{
     - 📦Project Name/
 ├── 📁 app/
 │   ├── layout.tsx                 # Root layout (common header/footer/providers)
@@ -165,3 +206,4 @@ When more than one lockfile exists, Turbopack gets confused about which package 
 ├── postcss.config.js              # PostCSS configuration
 ├── package.json
 └── README.md
+}
