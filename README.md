@@ -106,6 +106,7 @@ b> It helps manage loading states automatically and improves the user experience
 c> Waiting for server-rendered content => The period when a server component is fetching data before sending its HTML to the browser.
 d> Suspense Attributes/props - fallback, children and key.
 e> Sometimes, you want to refresh or re-suspend a component — for example, when a filter changes or a new ID is selected. You can use the key prop on Suspense to remount the children.
+f> Using a key prop with <Suspense> is a powerful trick to retrigger Suspense fallback (like your skeleton) whenever a dependency changes — for example, when filters, search text, or pagination parameters change.
 7. Server Components (async fetch) & Client Components (lazy load)
 # Routing in Next.js
 a> Routing in Next.js is file-based — the folder and file structure inside your app/ (or older pages/) directory automatically defines your URL routes.No need to manually configure routes like in React Router — it’s automatic.
@@ -134,8 +135,8 @@ d> searchParams represents the query string in the URL (the part after ?).
 - Real Time Updates
 - Youtube Live Stream chat UI
 - Auto complete & Search Box
-
-10. Folder Structure
+10. TypeScript - tsconfig.js file =>TypeScript compiler how to process your code, which files to include, and which features to enable or disable.
+11. Folder Structure
 ```{
     - 📦Project Name/
 ├── 📁 app/

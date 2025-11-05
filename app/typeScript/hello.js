@@ -64,11 +64,11 @@
 // };
 // console.log(rectangle);
 //Eg.9 : Union Type
-function printStatusCode(code) {
-    console.log("My status code is ".concat(code, "."));
-}
-printStatusCode(404);
-printStatusCode('404');
+// function printStatusCode(code: string | number) {
+//   console.log(`My status code is ${code}.`)
+// }
+// printStatusCode(404);
+// printStatusCode('404');
 //Eg.10 : TS - Functions - Return Type
 // function getTime(): number {
 //   return new Date().getTime();
@@ -82,3 +82,62 @@ printStatusCode('404');
 //Eg.11 : TS - Casting
 // let x: unknown = 'hello';
 // console.log((x as string).length);
+//Eg.12 : TypeScript - Classes -- Member Types | Member Visibility(Public, Private, Protected)
+//a. Member Types | Member Visibility Modifiers
+// class Person {
+//   private name: string;
+//   public constructor(name: string) {
+//     this.name = name;
+//   }
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+// const person = new Person("Chandan Kushwaha");
+// console.log(person.getName()); 
+//b. this Keyword
+// class Person {
+//   // name is a private member variable
+//   public constructor(private name: string) {}
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+// const person = new Person("Chandan Kushwaha");
+// console.log(person.getName());
+//c. Readonly keyword
+// class Person {
+//   private readonly name: string;
+//   public constructor(name: string) {
+// // name cannot be changed after this initial definition, which has to be either at its declaration or in the constructor.
+//     this.name = name;
+//   }
+//   public getName(): string {
+//     return this.name;
+//   }
+// }
+// const person = new Person("Chandan Kushwaha");
+// console.log(person.getName());
+//d. Implement Keyword | Inheritance Extends | Override
+// interface Shape {
+//   getArea: () => number;
+// }
+// class Rectangle implements Shape {
+//   public constructor(protected readonly width: number, protected readonly height: number) {}
+//   public getArea(): number {
+//     return this.width * this.height;
+//   }
+//   public toString(): string {
+//     return `Rectangle[width=${this.width}, height=${this.height}]`;
+//   }
+// }
+// class Square extends Rectangle {
+//   public constructor(width: number) {
+//     super(width, width);
+//   }
+//   public override toString(): string {
+//     return `Square[width=${this.width}]`;
+//   }
+// }
+// const s = new Square(10);
+// console.log(s.getArea());

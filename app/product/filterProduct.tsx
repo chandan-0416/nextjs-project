@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useMemo, useState, useEffect, startTransition } from "react"; //
+import { useMemo, useState, useEffect, startTransition } from "react"; 
 
 type Product = {
   id: number;
@@ -77,6 +77,7 @@ export default function FiltertheProduct({
       .map(([key, value]) => `${key}=${value}`)
       .join("&");
 
+      
     startTransition(() => {
       router.push(`/product?${queryString}`);
     });
