@@ -119,24 +119,8 @@ a> Use Next.js’s <LINK> component from next/link for client-side navigation.
 b> Programmatic Navigation (useRouter)
 c> params represents the dynamic segments from the URL path — that is, parts of the route surrounded by square brackets [ ].
 d> searchParams represents the query string in the URL (the part after ?).
-9. Frontend System Design
-# Low Level Design (LLD)
-- Component Design
-- Config Driven UI
-- Shimmer UI
-- Routing & Prouting Routes
-- State Management + Libraries
-- Multi language Support
-- Infinte Scroll
-- Accorion
-- Reddit Nested Comments
-- Image Slider
-- Pagination
-- Real Time Updates
-- Youtube Live Stream chat UI
-- Auto complete & Search Box
-10. TypeScript - tsconfig.js file =>TypeScript compiler how to process your code, which files to include, and which features to enable or disable.
-11. Folder Structure
+9. TypeScript - tsconfig.js file =>TypeScript compiler how to process your code, which files to include, and which features to enable or disable.
+10. Folder Structure
 ```{
     - 📦Project Name/
 ├── 📁 app/
@@ -204,3 +188,42 @@ d> searchParams represents the query string in the URL (the part after ?).
 ├── package.json
 └── README.md
 }
+```
+
+##🚀
+
+1. Best Practices | Production Level App
+# Development Workflow
+- Use npm run dev for development with hot reloading
+- Run npm run type-check to verify TypeScript types
+- Use npm run lint to check for linting errors
+- Run npm run build to create production build
+# Performance Optimization
+- Use code splitting with dynamic imports
+- Enable tree-shaking in production builds
+- Use React.memo and useMemo for expensive computations
+- Lazy load non-critical components
+# Common Pitfalls
+- TypeScript configuration: Ensure strict mode is enabled
+- ESLint + Prettier conflicts: Use eslint-config-prettier to disable conflicting rules
+- Slow builds: Consider using Vite or esbuild for faster development
+- Missing type definitions: Install @types packages for all dependencies
+- Debugging issues: Ensure source maps are properly configured
+# Recommended Tools
+- Bundlers: Vite, Webpack, Parcel
+- Testing: Jest, React Testing Library, Cypress
+- Linting/Formatting: ESLint, Prettier, Stylelint
+- Documentation: TypeDoc, Storybook
+- Performance: Web Vitals, Lighthouse
+
+# Basics Fundamentals (0s,1s) : 
+1. Most modern programming languages are conceptually inherited from the C programming language — directly or indirectly.
+2. The Root: Assembly & Machine Language : 
+a> At the very base, Machine Language (binary 0s and 1s) is the only language the CPU truly understands.
+b> Assembly Language came next — a human-readable symbolic form of machine code.
+c> Every programming language eventually compiles or interprets down to machine code.
+3. Early High-Level Languages (1950s–1960s)
+a> FORTRAN (1957) — for mathematical/scientific computing
+b> COBOL (1959) — for business applications
+c> ALGOL (1958) — introduced structured programming and influenced C, Pascal, and many others.
+4. All modern programming languages are ultimately inherited from Assembly Language, but C is considered the fundamental ancestor of almost all modern high-level languages.
