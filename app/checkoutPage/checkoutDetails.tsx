@@ -21,7 +21,7 @@ export default function CheckoutPage() {
   return (
     <div className="flex flex-col min-h-screen bg-gray-50">
       {/* 🧭 Header */}
-      <header className="bg-blue-600 text-white text-center py-4 text-xl font-bold shadow">
+      <header className="mt-15 bg-blue-600 text-white text-center py-4 text-xl font-bold shadow">
         Checkout Page
       </header>
 

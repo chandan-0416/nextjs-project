@@ -120,7 +120,44 @@ b> Programmatic Navigation (useRouter)
 c> params represents the dynamic segments from the URL path — that is, parts of the route surrounded by square brackets [ ].
 d> searchParams represents the query string in the URL (the part after ?).
 9. TypeScript - tsconfig.js file =>TypeScript compiler how to process your code, which files to include, and which features to enable or disable.
-10. Folder Structure
+10. Two way to fetch the API : 1. fetch() method, 2. 
+11. I want to fetch Get API in next.js with route and typeScript?
+
+12. (App Router), there are two main ways to fetch data:
+a> Server-side fetching — happens before the page is sent to the browser.
+b> Client-side fetching — happens after the page loads in the browser.
+And there are API Routes, which act as the backend endpoints for your app.
+c> page ---> page.tsx Renders a UI route (user-facing page) => page.tsx defines a frontend route (like /product) :  ← UI page (frontend)
+d> Route Handler --->  route.ts  Creates an API endpoint (server logic) => route.ts defines a backend API route (like /api/product) : API endpoint (server logic)
+13. 
+```{Concept                   	  Summary
+API Routes	             Used as backend endpoints for CRUD operations.
+Dynamic API Route([id])	   Handle dynamic resource (like /api/products/2).
+Server Components	        Fetch data before rendering → good for SEO & speed.
+Client Components	        Fetch data after render → good for interactivity.
+TypeScript	             Define interfaces (Product) to ensure type safety everywhere.}
+```
+14. API Routes in Next.js = mini backend functions.
+Each route (route.ts) can handle:
+- GET → Read data
+- POST → Create data
+- PUT / PATCH → Update data
+- DELETE → Delete data
+They run only on the server — so you can safely use databases or API keys here.
+15. An API Route Proxy in Next.js means you create your own internal API endpoints (using /app/api/...) that forward or process requests to another backend or external API (like TMDB, DummyJSON, or your database).
+- Frontend → Your Next.js API → External API / DB
+- This acts as a secure middle layer.
+- Why Use an API Proxy?
+```{  
+  Reason	                Explanation
+🔒 Security	          Hide your secret keys (e.g., TMDB, Stripe, etc.) from frontend
+🧠 Logic Layer	          Add validation, transformation, or filtering before sending data
+⚡ Performance	         Enable caching (ISR or revalidation)
+🧰 Flexibility	          If API changes later, you only update your proxy route — not all components
+🔄 Reuse	               Central place for all API logic (CRUD, auth, etc.)
+}
+```
+16. Folder Structure
 ```{
     - 📦Project Name/
 ├── 📁 app/
@@ -189,6 +226,33 @@ d> searchParams represents the query string in the URL (the part after ?).
 └── README.md
 }
 ```
+17. Data Flow Summary
+```
+{
+┌─────────────────────────────┐
+│        API Route            │
+│ /app/api/products/route.ts  │
+│ Handles GET, POST, etc.     │
+└────────────┬────────────────┘
+             │
+      fetch("/api/products")
+             │
+┌────────────▼────────────────┐
+│     Server Component         │
+│ app/products/page.tsx        │
+│ Pre-renders HTML for SEO     │
+└────────────┬────────────────┘
+             │
+             ▼
+┌─────────────────────────────┐
+│     Client Component         │
+│ "use client" + useEffect()   │
+│ Interactive UI, live updates │
+└─────────────────────────────┘
+}
+```
+18. 
+
 
 ##🚀
 
