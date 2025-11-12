@@ -135,8 +135,8 @@ export default function FiltertheProduct({
       <div className="mb-4">
         <h3 className="font-semibold text-gray-800 mb-2">Tags</h3>
         <div className="flex flex-col gap-2">
-          {visibleTags.map((tag) => (
-            <label key={tag} className="flex items-center gap-2 text-gray-700 cursor-pointer">
+          {visibleTags.map((tag, index) => (
+            <label key={`${tag}-${index}`} className="flex items-center gap-2 text-gray-700 cursor-pointer">
               <input
                 type="checkbox"
                 checked={selectedTags.includes(tag)}

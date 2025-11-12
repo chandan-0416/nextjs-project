@@ -13,7 +13,6 @@ export async function GET() {
     const data = await res.json();
     console.log(data);
     
-
     // Return products as API response
     return NextResponse.json(data.products);
   } catch (error) {

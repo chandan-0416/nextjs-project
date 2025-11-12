@@ -1,23 +1,3 @@
-// "use client";
-
-// export default function ProductSkeleton() {
-//   return (
-//     <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4 animate-pulse">
-//       {Array.from({ length: 8 }).map((_, i) => (
-//         <div key={i} className="border rounded-lg p-3 space-y-3">
-//           <div className="bg-gray-300 h-40 w-full rounded-md"></div>
-//           <div className="h-4 bg-gray-300 rounded w-3/4"></div>
-//           <div className="h-4 bg-gray-300 rounded w-1/2"></div>
-//           <div className="h-6 bg-gray-300 rounded w-1/3"></div>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// }
-
-
-
-
 "use client";
 
 export default function ProductSkeleton() {

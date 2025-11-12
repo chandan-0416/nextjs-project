@@ -120,16 +120,13 @@ b> Programmatic Navigation (useRouter)
 c> params represents the dynamic segments from the URL path — that is, parts of the route surrounded by square brackets [ ].
 d> searchParams represents the query string in the URL (the part after ?).
 9. TypeScript - tsconfig.js file =>TypeScript compiler how to process your code, which files to include, and which features to enable or disable.
-10. Two way to fetch the API : 1. fetch() method, 2. 
-11. I want to fetch Get API in next.js with route and typeScript?
-
-12. (App Router), there are two main ways to fetch data:
+10. (App Router), there are two main ways to fetch data:
 a> Server-side fetching — happens before the page is sent to the browser.
 b> Client-side fetching — happens after the page loads in the browser.
 And there are API Routes, which act as the backend endpoints for your app.
 c> page ---> page.tsx Renders a UI route (user-facing page) => page.tsx defines a frontend route (like /product) :  ← UI page (frontend)
 d> Route Handler --->  route.ts  Creates an API endpoint (server logic) => route.ts defines a backend API route (like /api/product) : API endpoint (server logic)
-13. 
+11. 
 ```{Concept                   	  Summary
 API Routes	             Used as backend endpoints for CRUD operations.
 Dynamic API Route([id])	   Handle dynamic resource (like /api/products/2).
@@ -137,14 +134,14 @@ Server Components	        Fetch data before rendering → good for SEO & speed.
 Client Components	        Fetch data after render → good for interactivity.
 TypeScript	             Define interfaces (Product) to ensure type safety everywhere.}
 ```
-14. API Routes in Next.js = mini backend functions.
+12. API Routes in Next.js = mini backend functions.
 Each route (route.ts) can handle:
 - GET → Read data
 - POST → Create data
 - PUT / PATCH → Update data
 - DELETE → Delete data
 They run only on the server — so you can safely use databases or API keys here.
-15. An API Route Proxy in Next.js means you create your own internal API endpoints (using /app/api/...) that forward or process requests to another backend or external API (like TMDB, DummyJSON, or your database).
+13. An API Route Proxy in Next.js means you create your own internal API endpoints (using /app/api/...) that forward or process requests to another backend or external API (like TMDB, DummyJSON, or your database).
 - Frontend → Your Next.js API → External API / DB
 - This acts as a secure middle layer.
 - Why Use an API Proxy?
@@ -157,7 +154,7 @@ They run only on the server — so you can safely use databases or API keys here
 🔄 Reuse	               Central place for all API logic (CRUD, auth, etc.)
 }
 ```
-16. Folder Structure
+14. Folder Structure
 ```{
     - 📦Project Name/
 ├── 📁 app/
@@ -226,7 +223,7 @@ They run only on the server — so you can safely use databases or API keys here
 └── README.md
 }
 ```
-17. Data Flow Summary
+15. Data Flow Summary
 ```
 {
 ┌─────────────────────────────┐
@@ -251,10 +248,8 @@ They run only on the server — so you can safely use databases or API keys here
 └─────────────────────────────┘
 }
 ```
-18. 
 
-
-##🚀
+###### ▶️▶️▶️
 
 1. Best Practices | Production Level App
 # Development Workflow
@@ -291,3 +286,79 @@ a> FORTRAN (1957) — for mathematical/scientific computing
 b> COBOL (1959) — for business applications
 c> ALGOL (1958) — introduced structured programming and influenced C, Pascal, and many others.
 4. All modern programming languages are ultimately inherited from Assembly Language, but C is considered the fundamental ancestor of almost all modern high-level languages.
+
+# Low Level Design
+- Component design
+- Config driven UI
+- Shimmer UI
+- Routing & Protected Routes
+- Statement management & Libraries
+- Multi-lamguage Support
+- Infinite Scroll
+- Accordion
+- Reddit Nested Comments
+- Image Slider
+- Pagination Part 1/2
+- Real time update
+- youtube live stream chat UI
+- Auto complete & Search Box
+
+###### ▶️▶️▶️
+
+# Application of Next.js & TypeScript 's documentation in project (Practice):
+
+1. Next.js 
+a> Installation
+b> Project Structure
+c> Layouts & Pages
+d> Linking and Navigating
+e> Server and Client components
+f> Cache Components
+g> Fetching Data
+h> Updating Data
+i> Caching and Revalidating
+j> Error Handling
+k> CSS
+l> Image Optimization
+m> Font Optimization
+n> Meta and OG Images
+o> Route Handlers
+p> Proxy
+q> Deploying
+r> Upgrading
+
+# Layouts and Pages 👍
+Next.js uses file-system based routing, meaning you can use folders and files to define routes. This page will guide you through how to create layouts and pages, and link between them.
+- Page : A page is UI that is rendered on a specific route.
+- Layout : A layout is UI that is shared between multiple pages. On navigation, layouts preserve state, remain interactive, and do not rerender.
+- Dynamic Route segment, params, searchParams, useSearchParams
+- (Route Group), [Dynamic Route segment], Nested Dynamic route segment
+- Dynamic route : params, searchParams(passing data into queryString of server component), useSearchParams(client component), catch-all segment([...slug]) as sub-cotegories.
+# Client component, when we need to use
+- State and event handlers. E.g. onClick, onChange.
+- Lifecycle logic. E.g. useEffect.
+- Browser-only APIs. E.g. localStorage, window, Navigator.geolocation, etc.
+- Custom hooks.
+# Server component, when you need to use
+- Fetch data from databases or APIs close to the source.
+- Use API keys, tokens, and other secrets without exposing them to the client.
+- Reduce the amount of JavaScript sent to the browser.
+- Improve the First Contentful Paint (FCP), and stream content progressively to the client.
+- Caching is the process of storing frequently accessed data in a temporary, high-speed storage layer (a cache) to serve future requests faster than accessing the original data source.
+- all server IO (database calls, APIs, computations).
+# Telemetry Monitering
+- Telemetry monitoring is the remote, continuous tracking of a patient's vital signs, most commonly heart rhythm, using electrodes on the body that transmit data to a central station.
+# Fetching Data
+- Server Components
+    - You can fetch data in Server Components using any asynchronous I/O, such as: The fetch API, An ORM or database, Reading from the filesystem using Node.js APIs like fs.
+
+- Client Components
+    - There are two ways to fetch data in Client Components, using: React's use hook and A community library like SWR or React Query
+# Streaming
+- There are two ways you can leverage streaming in your application:
+1. Wrapping a page with a loading.js file
+2. Wrapping a component with <Suspense>
+
+# Route Handlers
+- Route Handlers allow you to create custom request handlers for a given route using the Web Request and Response APIs.
+- Good to know: Route Handlers are only available inside the app directory. They are the equivalent of API Routes inside the pages directory meaning you do not need to use API Routes and Route Handlers together.

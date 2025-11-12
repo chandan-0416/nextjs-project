@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useCart } from "@/app/context/CartContext";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 type Product = {
   id: number;
@@ -18,27 +19,28 @@ type Product = {
 export default function ProductDetail({ product }: { product: Product }) {
   const { cartItems, addToCart } = useCart();
   const [relatedProducts, setRelatedProducts] = useState<Product[]>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (!product?.category) return;
 
-    // ✅ Fetch related products from same category
-    async function fetchRelated() {
+    const fetchRelated = async () => {
+      setLoading(true);
       try {
-        const res = await fetch(
+        const res = await axios.get(
           `https://dummyjson.com/products/category/${product.category}`
         );
-        if (!res.ok) throw new Error("Failed to load related products");
-        const data = await res.json();
-        // Exclude the current product from related list
-        const filtered = data.products.filter(
-          (p: Product) => p.id !== product.id
-        );
-        setRelatedProducts(filtered.slice(0, 4)); // Show top 4 related
+        const data = res.data.products;
+
+        // Filter out current product
+        const filtered = data.filter((p: Product) => p.id !== product.id);
+        setRelatedProducts(filtered.slice(0, 4));
       } catch (err) {
-        console.error("Error fetching related:", err);
+        console.error("Error fetching related products:", err);
+      } finally {
+        setLoading(false);
       }
-    }
+    };
 
     fetchRelated();
   }, [product]);
@@ -108,11 +110,14 @@ export default function ProductDetail({ product }: { product: Product }) {
       </div>
 
       {/* 🔹 Related Products Section */}
-      {relatedProducts.length > 0 && (
-        <div className="mt-16">
-          <h2 className="text-2xl font-bold mb-6 text-gray-900">
-            Related Products
-          </h2>
+      <div className="mt-16">
+        <h2 className="text-2xl font-bold mb-6 text-gray-900">
+          Related Products
+        </h2>
+
+        {loading ? (
+          <p className="text-gray-500">Loading related products...</p>
+        ) : relatedProducts.length > 0 ? (
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {relatedProducts.map((item) => (
               <Link
@@ -139,8 +144,10 @@ export default function ProductDetail({ product }: { product: Product }) {
               </Link>
             ))}
           </div>
-        </div>
-      )}
+        ) : (
+          <p className="text-gray-500">No related products found.</p>
+        )}
+      </div>
     </div>
   );
 }
