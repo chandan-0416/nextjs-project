@@ -362,3 +362,11 @@ Next.js uses file-system based routing, meaning you can use folders and files to
 # Route Handlers
 - Route Handlers allow you to create custom request handlers for a given route using the Web Request and Response APIs.
 - Good to know: Route Handlers are only available inside the app directory. They are the equivalent of API Routes inside the pages directory meaning you do not need to use API Routes and Route Handlers together.
+
+#### layout
+1. Breadcrums: Home>Restaurant
+2. landing page
+
+# database schema | 
+1. A database schema serves as the blueprint for a database, defining its structure and organization in a formal language supported by a database management system (DBMS). It outlines how data is logically stored, including the relationships between different tables and other database objects. 
+2. These schemas act as blueprints for your data, specifying field types, required fields, default values, and even custom validation logic.

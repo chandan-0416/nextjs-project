@@ -36,8 +36,7 @@ export default function RootLayout({
           <CartProvider>
           <Header/>
           {children} 
-
-        <Footer />
+          <Footer />
           </CartProvider>
         </NuqsAdapter>
       
