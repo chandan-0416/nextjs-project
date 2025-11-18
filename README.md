@@ -249,6 +249,22 @@ They run only on the server — so you can safely use databases or API keys here
 }
 ```
 
+ ####
+ {
+- App folder structure
+- client component, server component
+- Routing, Nested Route, nested layout, page.ts, layout.ts, dynamic route, dynamic route segment- catch all segments, 
+- Link component
+- App router
+- API route => act as backend end points
+- route group
+- Image component
+- params(props) , search params, useSearch params
+- error.tsx, loading.tsx, not found.tsx 
+- shimmer UI
+- suspense
+ }
+
 ###### ▶️▶️▶️
 
 1. Best Practices | Production Level App

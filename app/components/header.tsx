@@ -3,7 +3,7 @@
 import { useCart } from "../context/CartContext"; // React.context
 import { ShoppingCart} from "lucide-react";  //shopping cart icon
 import Link from "next/link"; // Navigation b/w pages - LINK component
-import Image from "next/image"; // 
+import Image from "next/image"; // Image component
 
 export default function Header() {
   const { cartItems } = useCart();
