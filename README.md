@@ -249,7 +249,7 @@ They run only on the server — so you can safely use databases or API keys here
 }
 ```
 
- ####
+ #### 
  {
 - App folder structure
 - client component, server component
@@ -263,6 +263,9 @@ They run only on the server — so you can safely use databases or API keys here
 - error.tsx, loading.tsx, not found.tsx 
 - shimmer UI
 - suspense
+- Live Cart Preview on the same page
+- Breadcrumb Navigation
+- useMemo is a React Hook used to optimize performance by memoizing (caching) the result of an expensive calculation.
  }
 
 ###### ▶️▶️▶️
