@@ -2,11 +2,14 @@ import { Suspense } from "react";
 import ProductsGrid from "./listProduct";
 import ProductSkeleton from "./productSkeleton";
 
+
+
 // Small delay to simulate network
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
+
 async function fetchProducts() {
-  await delay(200); // just for suspense demo
+  await delay(100); // just for suspense demo
 
   // ✅ Fetch from internal API route
   const res = await fetch("http://localhost:3000/api/products", {   // server page - page.tsx => add base url of local host as becz we are not deploy
@@ -44,3 +47,6 @@ export default async function ProductsPage() {
 ***/
 
 } 
+
+
+
