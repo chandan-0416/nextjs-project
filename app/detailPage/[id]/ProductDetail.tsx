@@ -195,6 +195,14 @@ export default function ProductDetail({ product }: { product: Product }) {
               <div className="text-lg font-semibold text-green-700 pt-3">
                 Total: ${totalPrice.toFixed(2)}
               </div>
+
+            <Link
+            href="/checkoutPage"
+            className="w-full sm:w-auto bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700 transition text-center"
+          >
+            Checkout
+          </Link>
+
             </div>
           )}
         </div>

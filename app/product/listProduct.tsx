@@ -107,7 +107,7 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
       </div>
 
       {/* MAIN Layout */}
-      <div className="flex flex-col md:flex-row gap-6">
+      <div className="flex flex-col md:flex-row gap-6 ">
 
         {/* Sidebar (Filters) */}
         <aside className="w-full md:w-1/3 lg:w-1/4">
