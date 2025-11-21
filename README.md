@@ -266,6 +266,8 @@ They run only on the server — so you can safely use databases or API keys here
 - Live Cart Preview on the same page
 - Breadcrumb Navigation
 - useMemo is a React Hook used to optimize performance by memoizing (caching) the result of an expensive calculation.
+- dark mode for the project - nextjs
+- 
  }
 
 ###### ▶️▶️▶️
@@ -402,3 +404,16 @@ Next.js uses file-system based routing, meaning you can use folders and files to
 # Library and Framework
 - A library is a collection of reusable functions that you call whenever you need them.
 - A framework defines the overall structure of your application and calls your code — this is called inversion of control.
+
+# Asynchronous JS
+1. Callback
+2. Promises
+3. async/await
+- When to Use and Avoid Callbacks?
+- Use callbacks when
+    - Handling asynchronous tasks (API calls, file reading).
+    - Implementing event-driven programming.
+    - Creating higher-order functions.
+- Avoid callbacks when
+    - Code becomes nested and unreadable (use Promises or async/await).
+    - You need error handling in asynchronous operations (Promises are better).

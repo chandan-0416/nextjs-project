@@ -99,15 +99,12 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
   }, [currentPage, totalPages]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 pt-4">
-
-      {/* Breadcrumbs */}
-      <div className="my-6">
-        <Breadcrumbs />
-      </div>
+    <div className="-mt-15 ">
+           {/* Breadcrumbs */}
+       <Breadcrumbs />
 
       {/* MAIN Layout */}
-      <div className="flex flex-col md:flex-row gap-6 ">
+      <div className="flex flex-col md:flex-row gap-1 mt-16 ">
 
         {/* Sidebar (Filters) */}
         <aside className="w-full md:w-1/3 lg:w-1/4">
@@ -165,7 +162,7 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
             ))}
 
             {currentProducts.length === 0 && (
-              <div className="col-span-full text-center text-gray-500 py-12">
+              <div className="col-span-full text-center text-gray-500  m-24">
                 No products match your filters.
               </div>
             )}

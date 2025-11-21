@@ -24,7 +24,7 @@ export default function CartPage() {
     return (
       <div className="flex flex-col min-h-screen px-4 sm:px-6 lg:px-8">
         {/* Breadcrumbs */}
-        <div className="max-w-4xl mx-auto mt-6">
+        <div className="fixed max-w-4xl mt-4">
           <Breadcrumbs />
         </div>
 
@@ -32,12 +32,6 @@ export default function CartPage() {
           <h2 className="text-2xl sm:text-3xl font-semibold mb-4">
             🛒 Your cart is empty
           </h2>
-          <Link
-            href="/product"
-            className="text-blue-600 hover:underline flex items-center gap-2 text-lg"
-          >
-            ← Back to Products
-          </Link>
         </div>
       </div>
     );
@@ -135,12 +129,6 @@ export default function CartPage() {
         </div>
       </div>
 
-      {/* Footer */}
-      <footer className="mt-12 bg-gray-100 text-center py-4 border-t">
-        <p className="text-gray-600 text-sm">
-          © {new Date().getFullYear()} My Store — All rights reserved.
-        </p>
-      </footer>
     </div>
   );
 }
