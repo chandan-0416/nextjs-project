@@ -417,3 +417,8 @@ Next.js uses file-system based routing, meaning you can use folders and files to
 - Avoid callbacks when
     - Code becomes nested and unreadable (use Promises or async/await).
     - You need error handling in asynchronous operations (Promises are better).
+
+## MVC [Model view controller]
+- MVC is a software architectural pattern that separates an application into three components — Model (data and business logic), View (UI), and Controller (request handling and coordination). This separation makes the application more organized, maintainable, and scalable.
+- MVVM separates UI (View), business state (ViewModel), and data (Model), where the View automatically updates itself using two-way data binding with the ViewModel
+- Link[https://chatgpt.com/c/692445d3-74e0-8320-ab47-f2e4ee86a7ab]

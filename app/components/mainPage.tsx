@@ -95,10 +95,10 @@ import { useRouter } from "next/navigation";
 export default function MainPage() {
   const router = useRouter();
   return (
-    <div className="mt-20 px-4 md:px-10 lg:px-20">
+    <div className="mt-15 px-4 md:px-10 lg:px-20">
       {/* Top Tag Button */}
       <div className="flex items-center justify-center">
-        <button className="bg-white shadow-md hover:shadow-xl transition-all rounded-3xl cursor-pointer mt-4 py-2 px-6 border border-gray-200">
+        <button className="bg-white shadow-md hover:shadow-xl transition-all rounded-3xl mt-4 py-2 px-6 border border-gray-200">
           <h1 className="text-black font-medium tracking-wide">Instant Invoicing</h1>
         </button>
       </div>
@@ -123,7 +123,7 @@ export default function MainPage() {
         <div className="flex justify-center mt-8">
           <button
             onClick={() => router.push("/product")}
-            className="text-white bg-blue-600 hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl rounded-full py-3 px-8 text-lg font-medium"
+            className="text-white bg-blue-600 hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl rounded-full cursor-pointer py-3 px-8 text-lg font-medium"
           >
             Show Your Products
           </button>
