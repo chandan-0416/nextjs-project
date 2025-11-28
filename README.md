@@ -100,21 +100,32 @@ that’s where your next.config.js, package.json, and node_modules are. It found
 When more than one lockfile exists, Turbopack gets confused about which package manager / root directory to use.
 5. Make sure - Page.tsx --> No "use client" , bcz we want Page.tsx run on server side.
 6. Suspense (use at components level, skelton show and aslo show in url) and loading page
+
 # Suspense
+```
+{
 a> Suspense is a React feature that lets components wait (“suspend”) for asynchronous data before rendering.
 b> It helps manage loading states automatically and improves the user experience when dealing with async operations — such as fetching data, lazy-loading components, or waiting for server-rendered content.
 c> Waiting for server-rendered content => The period when a server component is fetching data before sending its HTML to the browser.
 d> Suspense Attributes/props - fallback, children and key.
 e> Sometimes, you want to refresh or re-suspend a component — for example, when a filter changes or a new ID is selected. You can use the key prop on Suspense to remount the children.
 f> Using a key prop with <Suspense> is a powerful trick to retrigger Suspense fallback (like your skeleton) whenever a dependency changes — for example, when filters, search text, or pagination parameters change.
+}
+```
 7. Server Components (async fetch) & Client Components (lazy load)
 # Routing in Next.js
+```
+{
 a> Routing in Next.js is file-based — the folder and file structure inside your app/ (or older pages/) directory automatically defines your URL routes.No need to manually configure routes like in React Router — it’s automatic.
 b> Each folder with a page.tsx file automatically becomes a route.
 c> Dynamic Routes (param) - To handle URLs with parameters (like /products/5).
 d> Next.js uses file-system based routing, meaning you can use folders and files to define routes. This page will guide you through how to create layouts and pages, and link between them.
+}
+```
 8. 
 # Navigation between Pages
+```
+{
 a> Use Next.js’s <LINK> component from next/link for client-side navigation.
 b> Programmatic Navigation (useRouter)
 c> params represents the dynamic segments from the URL path — that is, parts of the route surrounded by square brackets [ ].
@@ -126,6 +137,8 @@ b> Client-side fetching — happens after the page loads in the browser.
 And there are API Routes, which act as the backend endpoints for your app.
 c> page ---> page.tsx Renders a UI route (user-facing page) => page.tsx defines a frontend route (like /product) :  ← UI page (frontend)
 d> Route Handler --->  route.ts  Creates an API endpoint (server logic) => route.ts defines a backend API route (like /api/product) : API endpoint (server logic)
+}
+```
 11. 
 ```{Concept                   	  Summary
 API Routes	             Used as backend endpoints for CRUD operations.
