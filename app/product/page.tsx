@@ -9,7 +9,7 @@ const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
 
 async function fetchProducts() {
-  await delay(2000); // just for suspense demo
+  await delay(200); // just for suspense demo
 
   // ✅ Fetch from internal API route
   const res = await fetch("http://localhost:3000/api/products", {   // server page - page.tsx => add base url of local host as becz we are not deploy

@@ -384,11 +384,6 @@ Next.js uses file-system based routing, meaning you can use folders and files to
 - Route Handlers allow you to create custom request handlers for a given route using the Web Request and Response APIs.
 - Good to know: Route Handlers are only available inside the app directory. They are the equivalent of API Routes inside the pages directory meaning you do not need to use API Routes and Route Handlers together.
 
-# database schema 
-1. A database schema serves as the blueprint for a database, defining its structure and organization in a formal language supported by a database management system (DBMS). It outlines how data is logically stored, including the relationships between different tables and other database objects. 
-2. These schemas act as blueprints for your data, specifying field types, required fields, default values, and even custom validation logic.
-
-
 ###### Some changes in the projects :
 
 1. Breadcrums link: Home > Product > Cart > Checkout
@@ -422,3 +417,206 @@ Next.js uses file-system based routing, meaning you can use folders and files to
 - MVC is a software architectural pattern that separates an application into three components — Model (data and business logic), View (UI), and Controller (request handling and coordination). This separation makes the application more organized, maintainable, and scalable.
 - MVVM separates UI (View), business state (ViewModel), and data (Model), where the View automatically updates itself using two-way data binding with the ViewModel
 - Link[https://chatgpt.com/c/692445d3-74e0-8320-ab47-f2e4ee86a7ab]
+
+# Login and Signup in header
+1. B2B 
+2. B2C
+3. dark/light/system mode
+4. language
+5. tenent code (for crousal data)
+6. sign/signup ---> logout ----> < data : stored in my website > |  signin ---> utilized the stored data, then works as logged.
+7. Goal : SignIn and SignUp
+```
+{
+✔ User must see Signup page first
+✔ After signup → redirect to Main Page
+✔ Main Page should only open if user is logged in
+✔ Logout → clear session → go to Login page
+}
+```
+8. Authentication:
+- Authentication is the process of verifying that a user, device, or system is who or what it claims to be, typically by checking credentials like a password, fingerprint, or security token. It is a key part of security that confirms identity before granting access to resources, preventing unauthorized access and protecting systems, networks, and data.
+
+9. Protected Page v/s Home Page
+```
+{- A Home Page is a public page.
+Anyone can open it — logged in or not logged in.
+✔ Characteristics of a Home Page:
+No login required
+No token/cookie check
+Accessible to everyone
+Used for: landing page, about, products, contact, etc.
+- How Protected Pages Work (Simple Flow)
+1. Protected Routes are pages in your app that can be accessed only by authenticated (logged-in) users.
+2. If a user is not logged in, you block access and redirect them to:
+✔ Login Page
+✔ Signup Page
+❌ Or show 401 Unauthorized
+3. Because some pages contain user-specific or sensitive content like:
+Dashboard, Cart / Orders, User Profile, Admin Panel, Payment Page, Settings Page
+4. Anyone opening the URL directly (example: /dashboard) should not see content without login.
+
+🔁 Logic:
+User tries to open /dashboard
+Check if token exists (cookie/localStorage/server validation)
+If token exists → allow
+If no token → redirect to login page}
+```
+10. B2B v/s B2C websites 
+```
+{
+    ✅ B2B Website (Business to Business)
+A B2B website is a platform where one business sells products or services to another business.
+- Examples: 
+A wholesaler selling goods to retailers
+SaaS tools like Salesforce, HubSpot
+Alibaba (businesses buy in bulk)
+- Key Characteristics
+Bulk orders
+Higher pricing tiers
+Requires account creation or approval
+Focus on long-term business relationships
+More technical product details
+👉 A B2B website serves companies, not individual customers.
+
+✅ B2C Website (Business to Consumer)
+A B2C website is a platform where a business sells products or services directly to individual consumers.
+- Examples: 
+Amazon
+Flipkart
+Netflix
+Zmato / Swiggy
+-Key Characteristics
+Single-item purchases
+Easy checkout
+Focus on user experience and emotions
+Fast delivery and customer service
+👉 A B2C website sells directly to normal customers for personal use.
+}
+```
+11. Solve the Problems
+{
+- Routing, Nested Route, nested layout, page.ts, layout.ts, dynamic route, dynamic route segment- catch all segments
+- API route, App Route, Home page and Protected Page
+- breadcrums
+- responsive and fixed the position of product list and filter product
+- modify the detail page
+- sortby
+- logic in filter, if no product will match, UI does not collapse
+- login 
+
+# Solve problem (28-11-2015)
+- Qn. In Next.js (App Router), How many way to navigate?
+- check the detail page (Here, we only show the detail Page and suggest similar items)
+1. make the products in grid and list = Toggle
+2. show the listed/selected products on a page(listed Product Page)
+3. show the selected multiple items in list then use the add to cart ---- go into the your Cart Page 
+4. see the other website, how and where I put checkout Page 
+- use the Suspense (Loader or fallback Skelton), when I select the filter , show there is fallback in the Product grid
+- SignIn and Signup = use Local Storage, middleware
+- api route (login/signup) = replace "any" keyword with datatype.
+}
+
+12. In Next.js (App Router), you can navigate in 6 main ways.
+```{
+    1. <LINK> Component : (Recommended for UI Navigation)
+    - Best for buttons, menus, navbar links
+    - import Link from "next/link";
+    - <Link href="/dashboard">Go to Dashboard</Link>
+
+    2. router.push() : (Programmatic Navigation)
+    - Used inside client components.
+    - Used when: after login/signup, after form submit, navigate on button click
+    - "use client";
+    - import { useRouter } from "next/navigation";
+    - const router = useRouter();
+    - router.push("/login");
+
+    3. router.replace() : 
+    - Same as push, but does NOT keep previous page in history.
+    - Use cases: After logout, After forced redirects, Prevent back button abuse
+    - router.replace("/login");
+
+    4. router.back() 
+    - Go to the previous page.
+    - router.back();
+
+    5. <Redirect> : (Using Server Component)
+    - Use cases: Protected routes, Middleware replacements
+    - import { redirect } from "next/navigation";
+    - redirect("/login");
+
+    6. Navigation with middleware.ts
+    - Automatically redirect based on token or conditions.
+    - Use cases: Force login before home page, Admin route protection 
+    - import { NextResponse } from "next/server";
+    - export function middleware(request) {
+    - const token = request.cookies.get("token")?.value;
+    - if (!token) {
+    - return NextResponse.redirect(new URL("/login", request.url));}}
+
+    ## BONUS — Optional Ways to navigate
+
+    7. Refresh the current route (server components).
+     - router.refresh() 
+   
+    8. Search Params Navigation (Query Params)
+    - router.push("/products?category=shoes");
+
+    9. Dynamic Route Navigation
+    - router.push(`/product/${id}`);
+}
+```
+13.  Comparision amongs navigation methods
+```
+{
+    | Method             | Where?        | Purpose                       |
+| ------------------ | ------------- | ----------------------------- |
+| `<Link>`           | UI navigation | best for normal links         |
+| `router.push()`    | client        | programmatic                  |
+| `router.replace()` | client        | redirect without back history |
+| `router.back()`    | client        | go backward                   |
+| `redirect()`       | server        | force redirect                |
+| `middleware`       | global        | Auth protection               |
+
+}
+```
+14. Route vs Router (Interview Table):
+- A route is a specific path (URL), and a router is the system that manages and directs those routes.
+```
+{
+Feature     	 Route	                                     Router
+Meaning  	  A path/URL	                             Tool that manages routes
+Does	   Defines what happens on a specific URL	     Chooses which code runs for a route
+Example 	 /login	                                     BrowserRouter, express.Router
+Handles	     Single URL	                                  Collection of routes
+}
+```
+15. types of routes
+```
+{
+| Type            | Description          | Example               |
+| --------------- | -------------------- | --------------------- |
+| Page Route      | UI pages             | `/login`              |
+| API Route       | Backend logic        | `/api/login`          |
+| Dynamic Route   | Path with parameter  | `/users/:id`          |
+| Nested Route    | Routes inside routes | `/dashboard/settings` |
+| Public Route    | Open to all          | `/signup`             |
+| Protected Route | Login required       | `/dashboard`          |
+}
+```
+16. types of Routers
+```
+{
+    | Router Type        | Where Used      | Example               
+| ------------------ | --------------- | --------------------- |
+| BrowserRouter      | React frontend  | SPA apps              |
+| Next.js App Router | Next.js         | File-based routing    |
+| HashRouter         | React           | Static hosting        |
+| Express Router     | Node.js backend | REST APIs             |
+| Fastify Router     | Backend         | High-performance APIs |
+| Hono Router        | Edge functions  | Cloudflare            |
+
+}
+```
+17. 

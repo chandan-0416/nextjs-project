@@ -69,7 +69,7 @@ export default function ProductDetail({ product }: { product: Product }) {
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-10">
-      <div className="mt-6">
+      <div className="mt-8">
         <Breadcrumbs />
       </div>
 
