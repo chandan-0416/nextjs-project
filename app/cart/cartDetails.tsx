@@ -51,9 +51,9 @@ export default function CartPage() {
 
       {/* Cart Items */}
       <ul className="space-y-6 flex-grow">
-        {cartItems.map((item) => (
+        {cartItems.map((item,index) => (
           <li
-            key={item.id}
+            key={`${item.id}-${index}`}
             className="flex flex-col sm:flex-row items-center sm:items-start justify-between border-b pb-4"
           >
             {/* Product Info */}
@@ -108,7 +108,7 @@ export default function CartPage() {
       </ul>
 
       {/* Total Section */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mt-8 border-t pt-6">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-12 border-t pt-8">
         <span className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-0">
           Total: <span className="text-green-600">${total.toFixed(2)}</span>
         </span>

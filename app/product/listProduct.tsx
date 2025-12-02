@@ -3,9 +3,10 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import Image from "next/image";
-import Link from "next/link";
+
 import FiltertheProduct from "./filterProduct";
 import Breadcrumbs from "@/app/components/breadcrumbs";
+import { useCart } from "../context/CartContext";
 
 type Product = {
   id: number;
@@ -19,9 +20,10 @@ type Product = {
 };
 
 export default function ProductsGrid({ products }: { products: Product[] }) {
+
   const router = useRouter();
   const searchParams = useSearchParams();
-
+  const { cartItems, addToCart } = useCart();
   const productsPerPage = 9;
   const currentPage = Number(searchParams.get("page")) || 1;
 
@@ -76,7 +78,7 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
     const qs = params.toString();
     const url = qs ? `?${qs}` : ".";
     router.push(url);
-    try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch {}
+    try { window.scrollTo({ top: 0, behavior: "smooth" }); } catch { }
   };
 
   const handlePageChange = (page: number) => {
@@ -98,10 +100,11 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
     return pages;
   }, [currentPage, totalPages]);
 
+
   return (
-    <div className="-mt-15 ">
-           {/* Breadcrumbs */}
-       <Breadcrumbs />
+    <div className="-mt-14 ">
+      {/* Breadcrumbs */}
+      <Breadcrumbs />
 
       {/* MAIN Layout */}
       <div className="flex flex-col md:flex-row gap-1 mt-16 ">
@@ -134,31 +137,54 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
             key={currentPage}
           >
             {currentProducts.map((product) => (
-              <Link
+              <div
                 key={product.id}
-                href={`/detailPage/${product.id}`}
+
                 className="border rounded-lg p-4 shadow hover:shadow-md transition"
               >
-                <div className="w-full h-48 relative mb-3">
-                  <Image
-                    src={product.thumbnail}
-                    alt={product.title}
-                    fill
-                    className="object-cover rounded-md"
-                    unoptimized
-                  />
-                </div>
+                <div onClick={() => {
+                  router.push(`/detailPage/${product.id}`);
+                }}>
 
-                <h2 className="text-lg font-semibold text-gray-900">{product.title}</h2>
-                <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
+                  <div className="w-full h-48 relative mb-3">
+                    <Image
+                      src={product.thumbnail}
+                      alt={product.title}
+                      fill
+                      className="object-cover rounded-md"
+                      unoptimized
+                    />
+                  </div>
 
-                <div className="flex items-center justify-between mt-3">
-                  <p className="text-indigo-600 font-semibold">${product.price}</p>
-                  <p className="text-yellow-500">⭐ {product.rating.toFixed(1)}</p>
+                  <h2 className="text-lg font-semibold text-gray-900">{product.title}</h2>
+                  <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
+
+                  <div className="flex items-center justify-between mt-3">
+                    <p className="text-indigo-600 font-semibold">${product.price}</p>
+                    <p className="text-yellow-500">⭐ {product.rating.toFixed(1)}</p>
+                  </div>
+
                 </div>
 
                 <p className="text-sm text-gray-400 mt-1">{product.category}</p>
-              </Link>
+
+                <button
+                  className="bg-black text-white shadow-2xl"
+                  onClick={() => {
+                    const existingItem = cartItems.find((item) => item.id === product.id);
+
+                    if (existingItem) {
+                      addToCart({ ...product, quantity: existingItem.quantity + 1 });
+                    } else {
+                      addToCart({ ...product, quantity: 1 });
+                    }
+
+                    router.push("/cart");
+                  }}
+                >
+                  Add to Cart
+                </button>
+              </div>
             ))}
 
             {currentProducts.length === 0 && (
@@ -182,11 +208,10 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
               <button
                 onClick={() => handlePageChange(Math.max(1, currentPage - 1))}
                 disabled={currentPage === 1}
-                className={`px-4 py-2 rounded-lg ${
-                  currentPage === 1
+                className={`px-4 py-2 rounded-lg ${currentPage === 1
                     ? "bg-gray-300 text-gray-600 cursor-not-allowed"
                     : "bg-blue-600 text-white hover:bg-blue-700"
-                }`}
+                  }`}
               >
                 Prev
               </button>
@@ -195,11 +220,10 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
                 <button
                   key={page}
                   onClick={() => handlePageChange(page)}
-                  className={`px-4 py-2 rounded-md ${
-                    page === currentPage
+                  className={`px-4 py-2 rounded-md ${page === currentPage
                       ? "bg-blue-600 text-white"
                       : "bg-gray-100 hover:bg-gray-200"
-                  }`}
+                    }`}
                 >
                   {page}
                 </button>
@@ -208,11 +232,10 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
               <button
                 onClick={() => handlePageChange(Math.min(totalPages, currentPage + 1))}
                 disabled={currentPage === totalPages}
-                className={`px-4 py-2 rounded-lg ${
-                  currentPage === totalPages
+                className={`px-4 py-2 rounded-lg ${currentPage === totalPages
                     ? "bg-gray-300 text-gray-600 cursor-not-allowed"
                     : "bg-blue-600 text-white hover:bg-blue-700"
-                }`}
+                  }`}
               >
                 Next
               </button>

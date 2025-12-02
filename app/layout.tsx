@@ -32,7 +32,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* <ClientLayout> */}
+   
         <NuqsAdapter>
           <CartProvider>
           
@@ -40,9 +40,7 @@ export default function RootLayout({
       
           </CartProvider>
         </NuqsAdapter>
-        {/* </ClientLayout> */}
-
-      
+       
       </body>
     </html>
   );
