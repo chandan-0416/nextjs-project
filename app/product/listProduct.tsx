@@ -3,7 +3,6 @@
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import Image from "next/image";
-
 import FiltertheProduct from "./filterProduct";
 import Breadcrumbs from "@/app/components/breadcrumbs";
 import { useCart } from "../context/CartContext";
@@ -142,6 +141,7 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
 
                 className="border rounded-lg p-4 shadow hover:shadow-md transition"
               >
+              {/** click on card */}
                 <div onClick={() => {
                   router.push(`/detailPage/${product.id}`);
                 }}>
@@ -155,31 +155,28 @@ export default function ProductsGrid({ products }: { products: Product[] }) {
                       unoptimized
                     />
                   </div>
-
                   <h2 className="text-lg font-semibold text-gray-900">{product.title}</h2>
                   <p className="text-sm text-gray-600 mt-1 line-clamp-2">{product.description}</p>
-
                   <div className="flex items-center justify-between mt-3">
                     <p className="text-indigo-600 font-semibold">${product.price}</p>
                     <p className="text-yellow-500">⭐ {product.rating.toFixed(1)}</p>
                   </div>
-
+                    <p className="text-sm text-gray-400 mt-1">{product.category}</p>
                 </div>
-
-                <p className="text-sm text-gray-400 mt-1">{product.category}</p>
-
+                   {/** click on add to card */}
                 <button
                   className="bg-black text-white shadow-2xl"
                   onClick={() => {
                     const existingItem = cartItems.find((item) => item.id === product.id);
 
                     if (existingItem) {
-                      addToCart({ ...product, quantity: existingItem.quantity + 1 });
+                      alert("This product is already in your cart!")
+                    //  addToCart({ ...product, quantity: existingItem.quantity + 1 });
+                    
                     } else {
-                      addToCart({ ...product, quantity: 1 });
+                      addToCart({ ...product, quantity: 1 }); // add new product
+                        router.push("/cart");
                     }
-
-                    router.push("/cart");
                   }}
                 >
                   Add to Cart

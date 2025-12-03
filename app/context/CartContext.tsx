@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState, ReactNode } from "react"; //ReactNode represents everything that can be rendered.
+import React, { createContext, useContext, useState, ReactNode, useEffect } from "react"; //ReactNode represents everything that can be rendered.
 
 type CartItem = {
   id: number;
@@ -23,14 +23,31 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export function CartProvider({ children }: { children: ReactNode }) {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
+    // Load from localStorage when app starts
+    useEffect(() => {
+      const savedInLocalStorage = localStorage.getItem("cart");
+      if (savedInLocalStorage) setCartItems(JSON.parse(savedInLocalStorage)); //  Convert JSON string to actual array object
+    },[])
+
+    // Save to localStorage whenever cart changes
+    useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cartItems));
+  }, [cartItems]);
+
+
   // Add item only once — ignore if already exists
   const addToCart = (item: CartItem) => {
     setCartItems((prev) => {
       const exists = prev.some((i) => i.id === item.id);
-      if (exists) return prev; // prevent duplicates
-      return [...prev, { ...item, quantity: 1 }];
+      if (exists) { 
+        return prev.map((i)=> 
+        i.id === item.id ? {...i, quantity: item.quantity } : item
+      );
+    }
+      return [...prev, item]
     });
   };
+  // console.log(cartItems);
 
   // Remove item completely
   const removeFromCart = (id: number) =>

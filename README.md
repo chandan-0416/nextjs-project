@@ -620,10 +620,10 @@ Handles	     Single URL	                                  Collection of routes
 
 }
 ```
-17. 
-
-# Solve problem (01-11-2015) 
-- Qn. In Next.js (App Router), How many way to navigate?  ✔
+17. # Solve problem (01-11-2015) 
+```
+{
+    - Qn. In Next.js (App Router), How many way to navigate?  ✔
 - check the detail page (Here, we only show the detail Page and suggest similar items) | Cart data Flow  ✔
  Problem 1: When I click add to card on detailProduct page , it goes to cart Page and also show in the checkout Page? ✔
  Problem 2: When I click buy now on detailProduct Page, It directlty navigate to the checkout Page with existed add to cart Product. ✔
@@ -637,8 +637,8 @@ Handles	     Single URL	                                  Collection of routes
 - use the Suspense (Loader or fallback Skelton), when I select the filter , show there is fallback in the Product grid
 - SignIn and Signup = use Local Storage, middleware
 - api route (login/signup) = replace "any" keyword with datatype.
-
-
+}
+```
 18. How many way to store the data in client side and Server side
 # Client Side:
 ```
@@ -869,5 +869,61 @@ if (res.status === 200) {
 ```
 - The frontend decides what to do depending on: success or failure, what data was returned, response code
 30. 
+# Solve problem (01-11-2015) 
+```
+{- Qn. In Next.js (App Router), How many way to navigate?  ✔
+- check the detail page (Here, we only show the detail Page and suggest similar items) | Cart data Flow  ✔
+ Problem 1: When I click add to card on detailProduct page , it goes to cart Page and also show in the checkout Page? ✔
+ Problem 2: When I click buy now on detailProduct Page, It directlty navigate to the checkout Page with existed add to cart Product. ✔
+ Problem 3: Where, How can I put Login Page, Sign Up page , Logout?
+ problem 4: if carditems already exist in your cart, then don't navigate to the cart page if i do add to cart on existing items, It only show the pop-up(Cart already added) & also do same with detail page and make sure this change does not effect on +/- items in your cart page. ✔
+ Problem 5: check other website , How Cart Page look like? | add place order on your cartPage. 
+ Problem 6: Create a pop up / modal / dialog box. ✔
+ Problem 7: when I select the cart and copy the url ---> paste in new tab that works (Use React Context + Local Storage). ✔
+1. make the products in grid and list = Toggle
+2. show the listed/selected products on a page(listed Product Page) ✔
+3. show the selected multiple items in list then use the add to cart ---- go into the your Cart Page 
+4. see the other website, how and where I put checkout Page 
+- use the Suspense (Loader or fallback Skelton), when I select the filter , show there is fallback in the Product grid
+- SignIn and Signup = use Local Storage, middleware
+- api route (login/signup) = replace "any" keyword with datatype.
+}
+```
+31. when I click on <LINK> , It do empty the cart stored items but does not effect with useRouter(). | Why <Link> clears your cart but router.push() does not? ✔
+- <Link> navigation = full component remount → state becomes empty
+- router.push() navigation = soft navigation → state preserved
+- Reason #1: Cart state stored in React state only (NOT localStorage).
+```
+{
+If your cart is stored like this: const [cartItems, setCartItems] = useState([]);
+Then when you click <Link>, Next.js unmounts the component → all React state resets. But localStorage NEVER resets.
+So <Link> → component reloads → state resets to []
+router.push() → sometimes the component does NOT fully unmount (Client Transition), so your state does NOT reset.
+}
+```
+32. # Local Storage 👍   |( Wishlist / Favorites)
+- A small place in the browser where you can store data permanently.: Survives refresh, Survives tab close, Survives system restart, Data stays until you manually remove it.
+
+- problem 1: “Encountered two children with the same key 1 , Why duplicate items appear in cart? ✔
+-    Reason 1 — Your addToCart function is pushing duplicates
+-    Reason 2 — Your LocalStorage saved duplicates
+-    Solution : Add index to key to ensure uniqueness: Use a combination key for no duplicate keys.
+- problem 2 : Wrap Entire App, including Header, inside <CartProvider> ✔
+-     Reason: header was not wraped inside <CartProvider>
+
+- # Visual Comparison
+```
+{
+    | Storage Type  | Lives Where? | Persists after refresh? | Persists across tabs? |
+| ------------- | ------------ | ----------------------- | --------------------- |
+| React Context | Browser RAM  | ❌ No                    | ❌ No                  |
+| useState      | Browser RAM  | ❌ No                    | ❌ No                  |
+| localStorage  | Hard drive   | ✔ Yes                   | ✔ Yes                 |
+| cookies       | Hard drive   | ✔ Yes                   | ✔ Yes                 |
+| database      | Server       | ✔ Yes                   | ✔ Yes                 |
+
+}
+```
+33. 
 
 

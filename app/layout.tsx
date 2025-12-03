@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { CartProvider } from "./context/CartContext";
-import ClientLayout from "./clientLayout";
+
+import Header from "./components/header";
+import Footer from "./components/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,9 +37,9 @@ export default function RootLayout({
    
         <NuqsAdapter>
           <CartProvider>
-          
-         <ClientLayout> {children} </ClientLayout>
-      
+          <Header />
+          {children} 
+            <Footer />
           </CartProvider>
         </NuqsAdapter>
        

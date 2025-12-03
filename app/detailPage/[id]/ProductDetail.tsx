@@ -68,13 +68,12 @@ export default function ProductDetail({ product }: { product: Product }) {
     const existingItem = cartItems.find((item) => item.id === product.id);
 
     if (existingItem) {
-      addToCart({ ...product, quantity: existingItem.quantity + 1 });
+       alert("This product is already in your cart!")
+      // addToCart({ ...product, quantity: existingItem.quantity + 1 });
     } else {
       addToCart({ ...product, quantity: 1 });
+      router.push("/cart");
     }
-
-    // Redirect to Cart Page after adding
-    router.push("/cart");
   };
 
   const handleBuyNow = () => {
@@ -82,13 +81,13 @@ export default function ProductDetail({ product }: { product: Product }) {
   const existingItem = cartItems.find((item) => item.id === product.id);
 
   if (existingItem) {
-    addToCart({ ...product, quantity: existingItem.quantity + 1 });
-  } else {
-    addToCart({ ...product, quantity: 1 });
-  }
+    alert("This product is already in your cart!")
+     return ; // ❗ stops further code, prevents navigation and duplicate add
+    // addToCart({ ...product, quantity: existingItem.quantity + 1 });
+  } 
+  addToCart({ ...product, quantity: 1 });
+  router.push("/checkoutPage"); 
 
-  // Redirect directly to checkout page
-  router.push("/checkoutPage");  // or "/checkout" if that's your page
 };
 
   // Zoom lens mouse move
@@ -377,10 +376,19 @@ export default function ProductDetail({ product }: { product: Product }) {
             >
               Add to Cart
             </button>
-
-            <Link href="/checkoutPage" className="px-4 py-2 rounded-lg border font-semibold text-gray-700">
+             
+             <button
+                onClick={handleBuyNow}
+                className="px-4 py-2 rounded-lg border font-semibold text-gray-700"
+             >
               Buy Now
-            </Link>
+
+             </button>
+
+            {/* <Link href="/checkoutPage" className="px-4 py-2 rounded-lg border font-semibold text-gray-700">
+              Buy Now
+            </Link> */}
+
           </div>
         </div>
       </div>

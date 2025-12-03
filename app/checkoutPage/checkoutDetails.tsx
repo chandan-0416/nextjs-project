@@ -66,11 +66,13 @@ export default function CheckoutPage() {
                 <h2 className="text-xl font-semibold mb-4">Order Summary</h2>
 
                 <ul className="space-y-4 flex-grow max-h-[400px] overflow-y-auto">
-                  {cartItems.map((item) => (
+                  {cartItems.map((item, index) => (
                     <li
-                      key={item.id}
+                      key={`${item.id} -${index}`}
                       className="flex items-center justify-between border-b pb-2"
+                      
                     >
+                      
                       <div>
                         <h3 className="font-medium">{item.title}</h3>
                         <p className="text-gray-600 text-sm">
@@ -119,8 +121,10 @@ export default function CheckoutPage() {
                       
                     </li>
                   ))}
-                </ul>
 
+                  
+                </ul>
+            
                 <div className="flex justify-between mt-6 text-lg font-semibold">
                   <span>Total:</span>
                   <span>${total.toFixed(2)}</span>
