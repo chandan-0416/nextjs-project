@@ -437,16 +437,7 @@ Next.js uses file-system based routing, meaning you can use folders and files to
 3. dark/light/system mode
 4. language
 5. tenent code (for crousal data)
-6. sign/signup ---> logout ----> < data : stored in my website > |  signin ---> utilized the stored data, then works as logged.
-7. Goal : SignIn and SignUp
-```
-{
-✔ User must see Signup page first
-✔ After signup → redirect to Main Page
-✔ Main Page should only open if user is logged in
-✔ Logout → clear session → go to Login page
-}
-```
+
 8. Authentication:
 - Authentication is the process of verifying that a user, device, or system is who or what it claims to be, typically by checking credentials like a password, fingerprint, or security token. It is a key part of security that confirms identity before granting access to resources, preventing unauthorized access and protecting systems, networks, and data.
 
@@ -620,25 +611,8 @@ Handles	     Single URL	                                  Collection of routes
 
 }
 ```
-17. # Solve problem (01-11-2015) 
-```
-{
-    - Qn. In Next.js (App Router), How many way to navigate?  ✔
-- check the detail page (Here, we only show the detail Page and suggest similar items) | Cart data Flow  ✔
- Problem 1: When I click add to card on detailProduct page , it goes to cart Page and also show in the checkout Page? ✔
- Problem 2: When I click buy now on detailProduct Page, It directlty navigate to the checkout Page with existed add to cart Product. ✔
- Problem 3: Where, How can I put Login Page, Sign Up page , Logout?
- problem 4: if carditems already exist in your cart, then don't navigate to the cart page if i do add to cart, only show the pop-up(Cart already added). and make sure this change does not effect on +/- items in your cart page.
- Problem 5: check other website , How Cart Page look like? | add place order on your cartPage.
-1. make the products in grid and list = Toggle
-2. show the listed/selected products on a page(listed Product Page)
-3. show the selected multiple items in list then use the add to cart ---- go into the your Cart Page
-4. see the other website, how and where I put checkout Page 
-- use the Suspense (Loader or fallback Skelton), when I select the filter , show there is fallback in the Product grid
-- SignIn and Signup = use Local Storage, middleware
-- api route (login/signup) = replace "any" keyword with datatype.
-}
-```
+17. 
+
 18. How many way to store the data in client side and Server side
 # Client Side:
 ```
@@ -868,27 +842,10 @@ if (res.status === 200) {
 }
 ```
 - The frontend decides what to do depending on: success or failure, what data was returned, response code
+
 30. 
-# Solve problem (01-11-2015) 
-```
-{- Qn. In Next.js (App Router), How many way to navigate?  ✔
-- check the detail page (Here, we only show the detail Page and suggest similar items) | Cart data Flow  ✔
- Problem 1: When I click add to card on detailProduct page , it goes to cart Page and also show in the checkout Page? ✔
- Problem 2: When I click buy now on detailProduct Page, It directlty navigate to the checkout Page with existed add to cart Product. ✔
- Problem 3: Where, How can I put Login Page, Sign Up page , Logout?
- problem 4: if carditems already exist in your cart, then don't navigate to the cart page if i do add to cart on existing items, It only show the pop-up(Cart already added) & also do same with detail page and make sure this change does not effect on +/- items in your cart page. ✔
- Problem 5: check other website , How Cart Page look like? | add place order on your cartPage. 
- Problem 6: Create a pop up / modal / dialog box. ✔
- Problem 7: when I select the cart and copy the url ---> paste in new tab that works (Use React Context + Local Storage). ✔
-1. make the products in grid and list = Toggle
-2. show the listed/selected products on a page(listed Product Page) ✔
-3. show the selected multiple items in list then use the add to cart ---- go into the your Cart Page 
-4. see the other website, how and where I put checkout Page 
-- use the Suspense (Loader or fallback Skelton), when I select the filter , show there is fallback in the Product grid
-- SignIn and Signup = use Local Storage, middleware
-- api route (login/signup) = replace "any" keyword with datatype.
-}
-```
+
+
 31. when I click on <LINK> , It do empty the cart stored items but does not effect with useRouter(). | Why <Link> clears your cart but router.push() does not? ✔
 - <Link> navigation = full component remount → state becomes empty
 - router.push() navigation = soft navigation → state preserved
@@ -903,7 +860,10 @@ router.push() → sometimes the component does NOT fully unmount (Client Transit
 ```
 32. # Local Storage 👍   |( Wishlist / Favorites)
 - A small place in the browser where you can store data permanently.: Survives refresh, Survives tab close, Survives system restart, Data stays until you manually remove it.
-
+- LocalStorage is:
+✔ Persistent (survives refresh, new tabs, browser restart)
+❌ Not in memory
+❌ Not cleared until you clear it manually or remove the key
 - problem 1: “Encountered two children with the same key 1 , Why duplicate items appear in cart? ✔
 -    Reason 1 — Your addToCart function is pushing duplicates
 -    Reason 2 — Your LocalStorage saved duplicates
@@ -925,5 +885,31 @@ router.push() → sometimes the component does NOT fully unmount (Client Transit
 }
 ```
 33. 
+# Client Side Contains :
+{
+    | Item              | Example                         |
+| ----------------- | ------------------------------- |
+| UI Rendering      | React Components                |
+| Styling           | CSS, Tailwind                   |
+| State Management  | React Hooks                     |
+| Temporary storage | localStorage / sessionStorage   |
+| Browser APIs      | window, document                |
+| API calls         | fetch("/api/products")          |
+| Frontend logic    | Pagination UI, Filters, Buttons |
+}
+
+# Server Side Contains :
+{
+    | Item               | Example                         |
+| ------------------ | ------------------------------- |
+| API Routes         | `/api/products`                 |
+| Database code      | MongoDB, MySQL                  |
+| Authentication     | JWT, cookies                    |
+| Backend validation | email, password                 |
+| Business logic     | Cart calculation                |
+| Data fetching      | Fetch products                  |
+| Pagination logic   | `/api/products?page=3&limit=10` |
+}
+
 
 

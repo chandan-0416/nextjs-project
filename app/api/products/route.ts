@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 export async function GET() {
   try {
     // Fetch data from DummyJSON (external API)
-    const res = await fetch("https://dummyjson.com/products?limit=100" , { cache: "no-store" });
+    const res = await fetch("https://dummyjson.com/products?limit=100");
 
     if (!res.ok) {
       throw new Error("Failed to fetch data from DummyJSON");

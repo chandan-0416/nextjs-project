@@ -1,7 +1,8 @@
 export default function Footer() {
   return (
-    <footer className="bg-black">
+    <footer className="bg-black dark:bg-gray-900 text-black dark:text-white">
       <div className="
+     
         max-w-7xl mx-auto 
         grid 
         grid-cols-1 

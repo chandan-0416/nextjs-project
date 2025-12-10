@@ -12,7 +12,7 @@ async function fetchProducts() {
   await delay(200); // just for suspense demo
 
   // ✅ Fetch from internal API route
-  const res = await fetch("http://localhost:3000/api/products", {   // server page - page.tsx => add base url of local host as becz we are not deploy
+  const res = await fetch("http://localhost:3000/api/products ", {   // server page - page.tsx => add base url of local host as becz we are not deploy
     next: { revalidate: 60 }, // ISR caching | ISR (Incremental Static Regeneration) to revalidate cached data every 60 seconds
   });
 

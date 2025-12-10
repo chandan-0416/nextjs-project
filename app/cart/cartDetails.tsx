@@ -51,7 +51,7 @@ export default function CartPage() {
 
       {/* Cart Items */}
       <ul className="space-y-6 flex-grow">
-        {cartItems.map((item,index) => (
+        {cartItems.map((item, index) => (
           <li
             key={`${item.id}-${index}`}
             className="flex flex-col sm:flex-row items-center sm:items-start justify-between border-b pb-4"
@@ -120,15 +120,16 @@ export default function CartPage() {
           >
             Clear Cart
           </button>
+
+          {/* ✅ Only THIS line is modified */}
           <Link
-            href="/checkoutPage"
+            href="/checkoutPage?mode=cart"
             className="w-full sm:w-auto bg-green-600 text-white px-5 py-3 rounded-lg hover:bg-green-700 transition text-center"
           >
             Checkout
           </Link>
         </div>
       </div>
-
     </div>
   );
 }

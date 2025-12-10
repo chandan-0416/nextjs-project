@@ -147,7 +147,7 @@ export default function FiltertheProduct({
   const noProducts = (products || []).length === 0;
 
   return (
-    <div className="md:sticky md:top-4 md:self-start">
+    <div className="md:sticky md:top-4 md:self-start bg-white dark:bg-gray-900 text-black dark:text-white">
 
       {/* Mobile toggle */}
       <button
@@ -160,8 +160,9 @@ export default function FiltertheProduct({
       {/* Filter Panel */}
       <div
         className={`
-          bg-white shadow-md border rounded-xl p-4
+          shadow-md border rounded-xl p-4
           w-full md:w-80
+          bg-white dark:bg-gray-900 text-black dark:text-white
           ${isOpen ? "block" : "hidden"} md:block
           /* NO SCROLLBAR ANYWHERE */
         `}
